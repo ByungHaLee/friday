@@ -79,6 +79,38 @@ function separate(arr) {
 }
 // O(n)
 
+
+// with memory restriction
+function separate2(arr) {
+  var i,j
+  for(i=0; i<arr.length-1; i++) {
+    if(arr[i] === 'cat')
+      continue
+    
+    for(j=i+1; j<arr.length; j++) {
+      if(arr[j] === 'cat') {
+        arr[j] = arr[i]
+        arr[i] = 'cat'
+        break
+      }
+    }
+  }
+  for(i=arr.length-1; i>0; i--) {
+    if(arr[i] === 'cat')
+      continue
+    
+    for(j=i-1; j>=0; j--) {
+      if(arr[j] === 'dog') {
+        arr[j] = arr[i]
+        arr[i] = 'dog'
+        break
+      }
+    }
+  }
+  return arr
+}
+// O(n!)
+
 console.log(separate(['dog','cat','water'])) // ['cat','water','dog']
 
 console.log(separate(['dog','cat','water','cat']))// ['cat', 'cat', 'water', 'dog'])
