@@ -149,20 +149,17 @@ function highestScoringWord(str) {
   var word
   var scores = []
   var i
+  var highestScore = 0
+  var highestWord
   for(i=0; i<arr.length; i++) {
     var word = arr[i]
     var j
     var score = 0
     for(j=0; j<word.length; j++)
       score += word.charCodeAt(j) - 96
-    scores.push(score)
-  }
-  var highestWord
-  var highestScore = 0
-  for(i=0; i<arr.length; i++) {
-    if(scores[i] > highestScore) {
-      highestScore = scores[i]
-      highestWord = arr[i]
+    if(score > highestScore) {
+      highestScore = score
+      highestWord = word
     }
   }
   return highestWord
@@ -170,7 +167,7 @@ function highestScoringWord(str) {
 // O(n)
 
 
-console.log(highestScoringWord("a b c d e f")); // "f"
+console.log(highestScoringWord("a +b c d e f")); // "f"
 console.log(highestScoringWord("a b c d e f")); // "f"
 console.log(highestScoringWord("hello world")); // "world"
 console.log(highestScoringWord("go ahead make my day")); // "my"
